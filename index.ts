@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 import path from 'path';
 import {makeSchema} from 'nexus';
-import {GraphQLServer} from 'graphql-yoga';
+import {GraphQLServer, Options} from 'graphql-yoga';
 
 import * as types from './schema';
 
@@ -18,4 +20,10 @@ const server = new GraphQLServer({
   schema,
 });
 
-server.start(() => console.log('Server is running on http://localhost:4000'));
+server.start(
+  {
+    port: process.env.APP_PORT,
+  },
+  ({port}: Options) =>
+    console.log(`Server is running on http://localhost:${port}`),
+);
