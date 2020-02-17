@@ -3,6 +3,66 @@
  * Do not make changes to this file directly
  */
 
+import {core} from 'nexus';
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    json<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.ScalarInputFieldConfig<
+        core.GetGen3<'inputTypes', TypeName, FieldName>
+      >,
+    ): void; // "JSON";
+    jsonObject<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.ScalarInputFieldConfig<
+        core.GetGen3<'inputTypes', TypeName, FieldName>
+      >,
+    ): void; // "JSONObject";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.ScalarInputFieldConfig<
+        core.GetGen3<'inputTypes', TypeName, FieldName>
+      >,
+    ): void; // "Date";
+    time<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.ScalarInputFieldConfig<
+        core.GetGen3<'inputTypes', TypeName, FieldName>
+      >,
+    ): void; // "Time";
+    datetime<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.ScalarInputFieldConfig<
+        core.GetGen3<'inputTypes', TypeName, FieldName>
+      >,
+    ): void; // "DateTime";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    json<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "JSON";
+    jsonObject<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "JSONObject";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "Date";
+    time<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "Time";
+    datetime<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "DateTime";
+  }
+}
+
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
@@ -15,13 +75,20 @@ export interface NexusGenRootTypes {
   Query: {};
   User: {
     // root type
-    id: string; // String!
+    id: string; // ID!
+    name: string; // String!
   };
+  Node: NexusGenRootTypes['User'];
   String: string;
   Int: number;
   Float: number;
   Boolean: boolean;
   ID: string;
+  Date: any;
+  DateTime: any;
+  JSON: any;
+  JSONObject: any;
+  Time: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {}
@@ -29,17 +96,25 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {}
 export interface NexusGenFieldTypes {
   Query: {
     // field return type
-    ok: string; // String!
+    author: any; // JSON!
+    user: NexusGenRootTypes['User']; // User!
   };
   User: {
     // field return type
-    id: string; // String!
+    id: string; // ID!
+    name: string; // String!
+  };
+  Node: {
+    // field return type
+    id: string; // ID!
   };
 }
 
 export interface NexusGenArgTypes {}
 
-export interface NexusGenAbstractResolveReturnTypes {}
+export interface NexusGenAbstractResolveReturnTypes {
+  Node: 'User';
+}
 
 export interface NexusGenInheritedFields {}
 
@@ -49,9 +124,19 @@ export type NexusGenInputNames = never;
 
 export type NexusGenEnumNames = never;
 
-export type NexusGenInterfaceNames = never;
+export type NexusGenInterfaceNames = 'Node';
 
-export type NexusGenScalarNames = 'Boolean' | 'Float' | 'ID' | 'Int' | 'String';
+export type NexusGenScalarNames =
+  | 'Boolean'
+  | 'Date'
+  | 'DateTime'
+  | 'Float'
+  | 'ID'
+  | 'Int'
+  | 'JSON'
+  | 'JSONObject'
+  | 'String'
+  | 'Time';
 
 export type NexusGenUnionNames = never;
 
