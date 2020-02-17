@@ -1,10 +1,14 @@
 require('dotenv').config();
 
 import path from 'path';
+import express from 'express';
+import {ApolloServer} from 'apollo-server-express';
 import {makeSchema} from 'nexus';
-import {GraphQLServer, Options} from 'graphql-yoga';
 
 import * as types from './schema';
+
+const app = express();
+const __PORT__ = process.env.APP_PORT;
 
 export const schema = makeSchema({
   types,
@@ -16,14 +20,15 @@ export const schema = makeSchema({
   prettierConfig: path.join(__dirname.replace(/\/dist$/, ''), './.prettierrc'),
 });
 
-const server = new GraphQLServer({
+const server = new ApolloServer({
   schema,
+  introspection: true,
+  playground: true,
 });
+server.applyMiddleware({app, path: '/'});
 
-server.start(
-  {
-    port: process.env.APP_PORT,
-  },
-  ({port}: Options) =>
-    console.log(`Server is running on http://localhost:${port}`),
+app.listen({port: __PORT__}, () =>
+  console.log(
+    `⚡⚡⚡ Server ready at http://localhost:${__PORT__}${server.graphqlPath}`,
+  ),
 );
