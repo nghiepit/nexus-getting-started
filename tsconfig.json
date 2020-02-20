@@ -9,9 +9,8 @@
     "rootDir": ".",
     "strict": true,
     "skipLibCheck": true,
+    "noImplicitAny": false,
     "sourceMap": true
   },
-  "files": ["index.ts"],
-  "include": ["schema/**/*"],
   "exclude": ["node_modules", "./dist"]
 }

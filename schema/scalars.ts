@@ -1,9 +1,9 @@
 import {asNexusMethod} from 'nexus';
-import GraphQLJSON, {GraphQLJSONObject} from 'graphql-type-json';
 import {GraphQLDate, GraphQLTime, GraphQLDateTime} from 'graphql-iso-date';
+import {JSONResolver, JSONObjectResolver} from 'graphql-scalars';
 
-export const GQLJson = asNexusMethod(GraphQLJSON, 'json');
-export const GQLJsonObject = asNexusMethod(GraphQLJSONObject, 'jsonObject');
+export const GQLJson = asNexusMethod(JSONResolver, 'json');
+export const GQLJsonObject = asNexusMethod(JSONObjectResolver, 'jsonObject');
 
 export const GQLDate = asNexusMethod(GraphQLDate, 'date');
 export const GQLTime = asNexusMethod(GraphQLTime, 'time');
