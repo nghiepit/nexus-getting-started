@@ -1,6 +1,5 @@
 {
   "name": "nexus-getting-started",
-  "private": true,
   "version": "1.0.0",
   "description": "GraphQL Nexus getting started",
   "scripts": {
@@ -11,7 +10,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "apollo-server-express": "^2.10.1",
+    "apollo-server-express": "^2.11.0",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-iso-date": "^3.6.1",
@@ -19,21 +18,19 @@
     "nexus": "^0.12.0-rc.13"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^2.20.0",
-    "@typescript-eslint/parser": "^2.20.0",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">=13"
   },
   "repository": {
     "type": "git+ssh",
@@ -41,12 +38,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{md,json,graphql}": [
+    "*.{md,json,yml}": [
       "prettier --write",
       "git add"
     ],
@@ -55,15 +51,9 @@
       "git add"
     ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "author": {
     "name": "Nghiep",
-    "email": "me@nghiepit.dev",
-    "url": "https://nghiepit.dev"
+    "email": "me@nghiepit.dev"
   },
   "license": "MIT"
 }

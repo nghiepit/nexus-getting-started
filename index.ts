@@ -28,6 +28,7 @@ const server = new ApolloServer({
 server.applyMiddleware({app, path: '/'});
 
 app.listen({port: __PORT__}, () =>
+  // eslint-disable-next-line no-console
   console.log(
     `⚡⚡⚡ Server ready at http://localhost:${__PORT__}${server.graphqlPath}`,
   ),
