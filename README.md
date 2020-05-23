@@ -18,6 +18,12 @@ $ yarn install
 $ yarn dev
 ```
 
+## Build Docker image
+
+```bash
+$ docker build -t <image> .
+```
+
 ## Tech stack
 
 - [Nexus Schema](https://github.com/graphql-nexus/schema)
