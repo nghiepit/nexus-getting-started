@@ -1,36 +1,40 @@
 {
   "name": "nexus-getting-started",
   "version": "1.0.0",
-  "description": "GraphQL Nexus getting started",
+  "description": "GraphQL Nexus Schema Getting Started",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly index.ts",
-    "build": "tsc",
-    "start": "NODE_ENV=production node dist",
+    "dev": "ts-node-dev -r ./registerPath --no-notify --respawn --transpile-only server",
+    "build": "npm -s run generate:nexus && tsc",
+    "generate:nexus": "ts-node -r ./registerPath --transpile-only schema",
+    "start": "NODE_ENV=production node -r ./registerPath .nexus/server",
     "lint": "eslint --ignore-path .gitignore --ignore-path .prettierignore",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "apollo-server-express": "^2.10.1",
+    "@nexus/schema": "^0.13.1",
+    "apollo-server-express": "^2.13.1",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-iso-date": "^3.6.1",
-    "graphql-scalars": "^1.0.6",
-    "nexus": "^0.12.0-rc.13"
+    "graphql-scalars": "^1.1.2",
+    "tsconfig-paths": "^3.9.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.20.0",
-    "@typescript-eslint/parser": "^2.20.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1",
+    "@types/graphql-iso-date": "^3.3.3",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
+    "prettier": "^2.0.5",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.2"
+    "typescript": "^3.9.3"
   },
   "engines": {
-    "node": ">=13"
+    "node": ">=12"
   },
   "repository": {
     "type": "git+ssh",
@@ -42,7 +46,7 @@
     }
   },
   "lint-staged": {
-    "*.{md,json,yml,graphql}": [
+    "*.{md,json,yml}": [
       "prettier --write",
       "git add"
     ],

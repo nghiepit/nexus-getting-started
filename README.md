@@ -1,6 +1,6 @@
 # GraphQL Nexus Getting Started
 
-> GraphQL Nexus Getting Started
+> GraphQL Nexus Schema Getting Started
 
 ## Prerequisites
 
@@ -17,6 +17,10 @@ _Only for development environnement_
 $ yarn install
 $ yarn dev
 ```
+
+## Tech stack
+
+- [Nexus Schema](https://github.com/graphql-nexus/schema)
 
 ## License
 

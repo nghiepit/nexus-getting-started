@@ -1,3 +1,3 @@
-/dist
-/types.d.ts
+/.nexus
+/generated
 /schema.graphql
